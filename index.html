@@ -55,7 +55,8 @@
                     $("<a/>").attr("href", item.html_url)
                         .attr("title", "un projet que j’affectionne")
                         .html(item.name)
-                        .appendTo(target_elt).appendTo(li);
+                        .appendTo(li);
+                    li.appendTo(ul);
                     if ( i === 10 ) {  // max items
                         return false;
                     }
@@ -79,7 +80,8 @@
             $("<a/>").attr("href", item.u)
                 .attr("title", "un projet que j’affectionne")
                 .html(item.d)
-                .appendTo(target_elt).appendTo(li);
+                .appendTo(li);
+            li.appendTo(ul);
             if ( i === 10 ) {  // max items
                 return false;
             }
