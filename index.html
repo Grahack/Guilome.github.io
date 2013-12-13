@@ -47,9 +47,28 @@ $ git checkout gh-pages
 <p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
 
 <h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Repository Starred</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>Starred repos&nbsp;:</p>
+        <div id="liste"></div>
+        <script type="text/javascript">
+            var target_elt = $('#liste');
+            var url = "https://api.github.com/users/guilome/starred";
+            var request = $.get(url, {}, function() {}, 'jsonp');
+            request.done(function(data) {
+                var ul = $('<ul/>').addClass('star-liste').appendTo(target_elt);
+                $.each(data.data, function(i, item) {
+                    var li = $('<li/>').appendTo(ul);
+                    $("<a/>").attr("href", item.html_url)
+                        .attr("title", "un projet que j’affectionne")
+                        .html(item.name)
+                        .appendTo(target_elt).appendTo(li);
+                    if ( i === 10 ) {  // max items
+                        return false;
+                    }
+                });
+            });
+        </script>
 
 <h3>
 <a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
